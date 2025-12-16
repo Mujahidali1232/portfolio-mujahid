@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { DATA } from "@/data/portfolio";
 
-const profileImg = "mujahid.jpeg";
+const profileImg = "/mujahid.jpeg";
 
 /* Animation Variants */
 const container = {

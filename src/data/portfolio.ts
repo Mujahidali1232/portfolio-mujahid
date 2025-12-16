@@ -28,6 +28,8 @@ export interface Skill {
   name: string;
   level: number; // 1-100
   category: "frontend" | "backend" | "tools";
+  image: string;
+  url: string;
 }
 
 export const DATA = {
@@ -49,17 +51,91 @@ export const DATA = {
     }
   },
   skills: [
-    { name: "React.js", level: 90, category: "frontend" },
-    { name: "Next.js", level: 85, category: "frontend" },
-    { name: "TypeScript", level: 80, category: "frontend" },
-    { name: "Tailwind CSS", level: 95, category: "frontend" },
-    { name: "JavaScript", level: 90, category: "frontend" },
-    { name: "Material UI", level: 85, category: "frontend" },
-    { name: "Vite", level: 85, category: "tools" },
-    { name: "PHP", level: 60, category: "backend" },
-    { name: "MySQL", level: 60, category: "backend" },
-    { name: "WordPress", level: 70, category: "tools" },
-  ] as Skill[],
+    {
+      name: "React.js",
+      level: 90,
+      category: "frontend",
+      image: "reactlogo.png",
+      url: "https://reactjs.org/"
+    },
+    {
+      name: "Next.js",
+      level: 85,
+      category: "frontend",
+      image: "next..svg",
+      url: "https://nextjs.org/"
+    },
+    {
+      name: "TypeScript",
+      level: 80,
+      category: "frontend",
+      image: "tslogo.png",
+      url: "https://www.typescriptlang.org/"
+    },
+    {
+      name: "Tailwind CSS",
+      level: 95,
+      category: "frontend",
+      image: "tslogo.jfif",
+      url: "https://tailwindcss.com/"
+    },
+    {
+      name: "JavaScript",
+      level: 90,
+      category: "frontend",
+      image: "js.jfif",
+      url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript"
+    },
+    {
+      name: "Material UI",
+      level: 85,
+      category: "frontend",
+      image: "mui.jfif",
+      url: "https://mui.com/"
+    },
+    {
+      name: "Vite",
+      level: 85,
+      category: "tools",
+      image: "vite.png",
+      url: "https://vitejs.dev/"
+    },
+    {
+      name: "PHP",
+      level: 60,
+      category: "backend",
+      image: "php.jfif",
+      url: "https://www.php.net/"
+    },
+    {
+      name: "MySQL",
+      level: 60,
+      category: "backend",
+      image: "sql.png",
+      url: "https://www.mysql.com/"
+    },
+    {
+      name: "WordPress",
+      level: 70,
+      category: "tools",
+      image: "press.jfif",
+      url: "https://wordpress.org/"
+    },
+    {
+      name: "CSS",
+      level: 70,
+      category: "tools",
+      image: "css.png",
+      url: "https://developer.mozilla.org/en-US/docs/Web/CSS"
+    },
+    {
+      name: "ChatGPT",
+      level: 95,
+      category: "tools",
+      image: "gpt.svg",
+      url: "https://chat.openai.com/"
+    }
+  ],
   services: [
     {
       id: 1,
@@ -85,7 +161,7 @@ export const DATA = {
       description: "Seamlessly integrating RESTful APIs to connect your frontend with powerful backend services.",
       icon: Server
     }
-  ] as Service[],
+  ],
   projects: [
     {
       id: 1,
@@ -116,6 +192,16 @@ export const DATA = {
       tech: ["React.js", "TypeScript", "Material UI", "Tailwind CSS"],
       link: "https://vercel.com/mujahid-ali-s-projects/case-study",
       github: "https://github.com/Mujahidali1232"
+    },
+    {
+      id: 4,
+      title: "Todo App",
+      category: "Web Application",
+      description: "A simple and effective Todo app built with React to manage your daily tasks efficiently.",
+      image: "todo.jpg",
+      tech: ["React.js", "JavaScript", "CSS"],
+      link: "https://todo-app-delta-gilt-46.vercel.app/",
+      github: "https://github.com/Mujahidali1232"
     }
-  ] as Project[]
+  ]
 };

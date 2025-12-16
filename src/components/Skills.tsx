@@ -30,16 +30,28 @@ export function Skills() {
               transition={{ duration: 0.4, delay: index * 0.1 }}
               className="glass-card p-6 rounded-xl flex flex-col items-center justify-center gap-4 group"
             >
-              <div className="w-16 h-16 rounded-full bg-background flex items-center justify-center border border-white/5 group-hover:scale-110 transition-transform duration-300 shadow-inner">
-                {/* Placeholder for skill icon logic - using initials if no icon map */}
-                <span className="text-2xl font-bold text-primary">{skill.name.substring(0, 2)}</span>
-              </div>
+              {/* Image with link */}
+              <a
+                href={skill.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-16 h-16 rounded-full overflow-hidden border border-white/5 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-inner"
+                title={skill.name}
+              >
+                <img
+                  src={skill.image}
+                  alt={skill.name}
+                  className="w-10 h-10 object-contain"
+                />
+              </a>
+
+              {/* Skill name and progress bar */}
               <div className="text-center">
                 <h3 className="font-medium text-white mb-1">{skill.name}</h3>
                 <div className="w-full bg-white/10 h-1.5 rounded-full mt-2 overflow-hidden">
-                  <div 
-                    className="h-full bg-primary rounded-full" 
-                    style={{ width: `${skill.level}%` }} 
+                  <div
+                    className="h-full bg-primary rounded-full"
+                    style={{ width: `${skill.level}%` }}
                   />
                 </div>
               </div>

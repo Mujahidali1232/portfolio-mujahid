@@ -8,7 +8,11 @@ export function ThemeToggle() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
+    const timer = setTimeout(() => {
+      setMounted(true);
+    }, 100);
+    
+    return () => clearTimeout(timer);
   }, []);
 
   if (!mounted) {

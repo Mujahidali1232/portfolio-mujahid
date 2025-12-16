@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
 import { Mail, MapPin, Phone, Send } from "lucide-react";
+import emailjs from "emailjs-com";
 import { DATA } from "@/data/portfolio";
 
 const formSchema = z.object({
@@ -28,12 +29,30 @@ export function Contact() {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-    toast({
-      title: "Message Sent!",
-      description: "Thanks for reaching out. I'll get back to you soon.",
+    // TODO: Replace with actual EmailJS credentials
+    // Get these from https://www.emailjs.com/
+    emailjs.send(
+      "YOUR_SERVICE_ID", // Replace with your EmailJS service ID
+      "YOUR_TEMPLATE_ID", // Replace with your EmailJS template ID
+      {
+        from_name: values.name,
+        from_email: values.email,
+        message: values.message,
+      },
+      "YOUR_USER_ID" // Replace with your EmailJS user ID
+    ).then(() => {
+      toast({
+        title: "Message Sent!",
+        description: "Thanks for reaching out. I'll get back to you soon.",
+      });
+      form.reset();
+    }).catch(() => {
+      toast({
+        title: "Error!",
+        description: "Failed to send message. Please try again later.",
+        variant: "destructive",
+      });
     });
-    form.reset();
   }
 
   return (
@@ -98,11 +117,11 @@ export function Contact() {
 
           {/* Contact Form */}
           <motion.div
-             initial={{ opacity: 0, x: 30 }}
-             whileInView={{ opacity: 1, x: 0 }}
-             viewport={{ once: true }}
-             transition={{ duration: 0.6 }}
-             className="lg:col-span-2 glass p-8 rounded-2xl border border-white/10"
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-2 glass p-8 rounded-2xl border border-white/10"
           >
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -141,19 +160,28 @@ export function Contact() {
                     <FormItem>
                       <FormLabel className="text-white">Message</FormLabel>
                       <FormControl>
-                        <Textarea 
-                          placeholder="Tell me about your project..." 
-                          className="min-h-[150px] bg-background/50 border-white/10 focus:border-primary text-white resize-none" 
-                          {...field} 
+                        <Textarea
+                          placeholder="Tell me about your project..."
+                          className="min-h-[150px] bg-background/50 border-white/10 focus:border-primary text-white resize-none"
+                          {...field}
                         />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-                <Button type="submit" size="lg" className="w-full md:w-auto bg-primary text-background hover:bg-primary/90 font-bold h-12 px-8">
-                  <Send className="mr-2 h-4 w-4" /> Send Message
-                </Button>
+
+                {/* Submit button with WhatsApp icon and link */}
+                <div className="flex items-center gap-4">
+                  <Button
+                    type="submit"
+                    size="lg"
+                    className="bg-primary text-background hover:bg-primary/90 font-bold h-12 px-8 flex items-center gap-2"
+                  >
+                    <Send className="h-4 w-4" /> Send Message
+                  </Button>
+
+                </div>
               </form>
             </Form>
           </motion.div>

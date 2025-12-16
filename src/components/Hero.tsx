@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Link } from "wouter";
 import { DATA } from "@/data/portfolio";
 import { Github, Linkedin, Twitter, ArrowDown } from "lucide-react";
 import { useCallback } from "react";
@@ -55,10 +54,8 @@ const NavigationButton = ({
       } else {
         // Fallback: scroll to top if element not found
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        console.warn(`Section with id "${sectionId}" not found`);
       }
     } catch (error) {
-      console.error('Error scrolling to section:', error);
       // Fallback to simple scroll
       window.scrollTo(0, 0);
     }
@@ -108,7 +105,7 @@ const NavigationButton = ({
   );
 };
 
-const heroBg = "React.jpg";
+const heroBg = "/React.jpg";
 const profileImg = "/mujahid.jpeg";
 
 export function Hero() {

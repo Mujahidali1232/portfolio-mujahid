@@ -28,31 +28,36 @@ export function Contact() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // TODO: Replace with actual EmailJS credentials
-    // Get these from https://www.emailjs.com/
-    emailjs.send(
-      "YOUR_SERVICE_ID", // Replace with your EmailJS service ID
-      "YOUR_TEMPLATE_ID", // Replace with your EmailJS template ID
-      {
-        from_name: values.name,
-        from_email: values.email,
-        message: values.message,
-      },
-      "YOUR_USER_ID" // Replace with your EmailJS user ID
-    ).then(() => {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    // EmailJS configuration - Replace with your actual credentials from https://www.emailjs.com/
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || "YOUR_SERVICE_ID";
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "YOUR_TEMPLATE_ID";
+    const userId = import.meta.env.VITE_EMAILJS_USER_ID || "YOUR_USER_ID";
+
+    try {
+      await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          from_name: values.name,
+          from_email: values.email,
+          message: values.message,
+        },
+        userId
+      );
+      
       toast({
-        title: "Message Sent!",
+        title: "Message sent successfully",
         description: "Thanks for reaching out. I'll get back to you soon.",
       });
       form.reset();
-    }).catch(() => {
+    } catch (error) {
       toast({
         title: "Error!",
         description: "Failed to send message. Please try again later.",
         variant: "destructive",
       });
-    });
+    }
   }
 
   return (
